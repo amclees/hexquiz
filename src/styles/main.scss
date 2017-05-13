@@ -1,0 +1,17 @@
+$fonts: Helvetica, Tahoma, sans-serif;
+$header-color: #333;
+$background-color: #ececec;
+
+body {
+  font: 100% $fonts;
+  background-color: $background-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $header-color;
+}
