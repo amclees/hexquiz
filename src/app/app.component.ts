@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Question } from './question';
 
 function getQuestions(number) {
-  if (number > 12) {
+  if (number > Question.hex_strings.length) {
     return [];
   }
   let questions = [];
