@@ -1,12 +1,12 @@
 <h2>{{title}}</h2>
 <hr />
 <div id="questions">
-  <div *ngFor="let question of questions" class="form-group row">
+  <div *ngFor="let question of questions" class="form-group row" [ngClass]="{'has-success': question.input === question.answer}">
     <div class="col-md-2">
       <label>{{question.text}}</label>
     </div>
     <div class="col-md-2">
-      <input class="form-control question" />
+      <input class="form-control question" [(ngModel)]="question.input" />
     </div>
   </div>
   <button class="btn btn-success">Finish</button>
