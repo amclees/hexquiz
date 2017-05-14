@@ -30,6 +30,15 @@ export class AppComponent {
   verifying = false;
   button = 'Finish';
   scoring: string;
+  timer = 0;
+
+  constructor() {
+    setInterval(() => {
+      if(!this.verifying) {
+        this.timer += 1
+      }
+    }, 1000);
+  }
 
   continue () {
     if (this.verifying) {
@@ -41,7 +50,8 @@ export class AppComponent {
         return acc + (question.correct() ? 1 : 0);
       }, 0);
       let percentage = Math.floor(100 * right / this.questions.length);
-      this.scoring = `You scored a ${right}/${this.questions.length} - ${percentage}%.`;
+      this.scoring = `You scored a ${right}/${this.questions.length} - ${percentage}% in ${this.timer} seconds.`;
+      this.timer = 0;
     }
     this.verifying = this.verifying ? false : true;
   }

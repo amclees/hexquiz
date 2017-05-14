@@ -1,6 +1,7 @@
 <h2>{{title}}</h2>
 <hr />
 <div id="questions">
+  <p>{{timer}} seconds elapsed</p>
   <div *ngFor="let question of questions"
   class="form-group row"
   [ngClass]="{'has-success': !(question.input.trim() === ''), 'has-error': verifying && !question.correct()}">
