@@ -1,13 +1,19 @@
 <h2>{{title}}</h2>
 <hr />
 <div id="questions">
-  <div *ngFor="let question of questions" class="form-group row" [ngClass]="{'has-success': question.input === question.answer}">
+  <div *ngFor="let question of questions"
+  class="form-group row"
+  [ngClass]="{'has-success': !(question.input.trim() === ''), 'has-error': verifying && !question.correct()}">
     <div class="col-md-2">
       <label>{{question.text}}</label>
     </div>
     <div class="col-md-2">
-      <input class="form-control question" [(ngModel)]="question.input" />
+      <input class="form-control question" [(ngModel)]="question.input" [disabled]="verifying"/>
+    </div>
+    <div class="col-md-4 wrong" *ngIf="verifying && !question.correct()">
+      The correct answer is {{question.answer}}
     </div>
   </div>
-  <button class="btn btn-success">Finish</button>
+  <p *ngIf="verifying">{{scoring}}</p>
+  <button class="btn btn-success" (click)="continue()">{{button}}</button>
 </div>

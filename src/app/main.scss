@@ -1,6 +1,7 @@
 $fonts: Helvetica, Tahoma, sans-serif;
 $header-color: #333;
 $background-color: #ececec;
+$wrong-color: #df0000;
 
 body {
   font: 100% $fonts;
@@ -19,4 +20,8 @@ h6 {
 .question {
   width: auto;
   display: inline;
+}
+
+.wrong {
+  color: $wrong-color;
 }

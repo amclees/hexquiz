@@ -19,11 +19,17 @@ const bin = [
 export class Question {
   text: string;
   answer: string;
+  input: string;
 
   constructor() {
     let direction = Math.random() < 0.5;
     let index = Math.floor(Math.random() * hex.length);
     this.text = direction ? hex[index] : bin[index];
     this.answer = direction ? bin[index] : hex[index];
+    this.input = '';
+  }
+
+  correct() {
+    return this.answer === this.input.trim().toUpperCase();
   }
 }
