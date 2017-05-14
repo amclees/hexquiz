@@ -5,13 +5,13 @@
   <div *ngFor="let question of questions"
   class="form-group row"
   [ngClass]="{'has-success': !(question.input.trim() === ''), 'has-error': verifying && !question.correct()}">
-    <div class="col-md-2">
+    <div class="col-md-3">
       <label>{{question.text}}</label>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-4">
       <input class="form-control question" [(ngModel)]="question.input" [disabled]="verifying"/>
     </div>
-    <div class="col-md-4 wrong" *ngIf="verifying && !question.correct()">
+    <div class="col-md-5 wrong" *ngIf="verifying && !question.correct()">
       The correct answer is {{question.answer}}
     </div>
   </div>

@@ -48,12 +48,12 @@ export class Question {
     this.text = '';
     this.answer = '';
     if(!length) {
-      length = Math.random() * 5;
+      length = 2 + Math.random() * 5;
     }
     for(var i = 0; i < length; i++) {
       let index = Math.floor(Math.random() * hex.length);
-      this.text += direction ? hex[index] : bin[index];
-      this.answer += direction ? bin[index] : hex[index];
+      this.text += direction ? hex[index] : bin[index] + ' ';
+      this.answer += direction ? bin[index] + ' ' : hex[index];
     }
     this.input = '';
   }
