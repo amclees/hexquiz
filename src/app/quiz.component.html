@@ -1,0 +1,20 @@
+<div id="questions">
+  <p *ngIf="!verifying">{{timer}} seconds elapsed</p>
+  <div *ngFor="let question of questions"
+  class="form-group row"
+  [ngClass]="{'has-success': !(question.input.trim() === ''), 'has-error': verifying && !question.correct()}">
+    <div class="col-md-3">
+      <label>{{question.text}}</label>
+    </div>
+    <div class="col-md-4">
+      <input class="form-control question" [(ngModel)]="question.input" [disabled]="verifying"/>
+    </div>
+    <div class="col-md-5 wrong" *ngIf="verifying && !question.correct()">
+      The correct answer is {{question.answer}}
+    </div>
+  </div>
+  <p *ngIf="verifying">{{scoring}}</p>
+  <button class="btn btn-success" (click)="continue()">{{button}}</button>
+</div>
+<br />
+<a routerLink="/">Back to Intro</a>
