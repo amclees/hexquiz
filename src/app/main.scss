@@ -5,7 +5,7 @@ $header-color: #333;
 $background-color: #ececec;
 $wrong-color: #df0000;
 
-a, p, li {
+a, p, li, button {
   font: 18px $fonts;
 }
 
@@ -15,8 +15,7 @@ h3,
 h4,
 h5,
 h6 {
-  font: 100% $fonts;
-  font-size: 36px;
+  font: $fonts;
   color: $header-color;
 }
 

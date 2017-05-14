@@ -1,5 +1,19 @@
 <div id="questions">
-  <p *ngIf="!verifying">{{timer}} seconds elapsed</p>
+  <div class="row">
+    <h3 *ngIf="!verifying" class="col-md-6 col-md-offset-3">{{timer}} second{{timer !== 1 ? 's' : ''}}</h3>
+    <br *ngIf="verifying" />
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+      <h3>Question</h3>
+    </div>
+    <div class="col-md-4">
+      <h3>Your Answer</h3>
+    </div>
+    <div class="col-md-5 wrong" *ngIf="verifying">
+      <h3>Correct Answer</h3>
+    </div>
+  </div>
   <div *ngFor="let question of questions"
   class="form-group row"
   [ngClass]="{'has-success': !(question.input.trim() === ''), 'has-error': verifying && !question.correct()}">
@@ -10,7 +24,7 @@
       <input class="form-control question" [(ngModel)]="question.input" [disabled]="verifying"/>
     </div>
     <div class="col-md-5 wrong" *ngIf="verifying && !question.correct()">
-      The correct answer is {{question.answer}}
+      <p>{{question.answer}}</p>
     </div>
   </div>
   <p *ngIf="verifying">{{scoring}}</p>

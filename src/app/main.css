@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato");
-a, p, li {
+a, p, li, button {
   font: 18px "Lato", Helvetica, Tahoma, sans-serif; }
 
 h1,
@@ -8,8 +8,7 @@ h3,
 h4,
 h5,
 h6 {
-  font: 100% "Lato", Helvetica, Tahoma, sans-serif;
-  font-size: 36px;
+  font: "Lato", Helvetica, Tahoma, sans-serif;
   color: #333; }
 
 .question {
