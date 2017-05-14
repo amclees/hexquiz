@@ -4,10 +4,10 @@
 
 /node_modules
 
-/.sass-cache
-/connect.lock
+.sass-cache
+connect.lock
 /coverage
-/libpeerconnection.log
+libpeerconnection.log
 npm-debug.log
 testem.log
 /typings

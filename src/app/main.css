@@ -10,4 +10,8 @@ h5,
 h6 {
   color: #333; }
 
+.question {
+  width: auto;
+  display: inline; }
+
 /*# sourceMappingURL=main.css.map */
