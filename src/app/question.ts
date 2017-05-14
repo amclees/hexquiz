@@ -43,11 +43,13 @@ export class Question {
   static hex_strings: string[];
   static bin_strings: string[];
 
-  constructor() {
+  constructor(length?: number) {
     let direction = Math.random() < 0.5;
     this.text = '';
     this.answer = '';
-    let length = Math.random() * 5;
+    if(!length) {
+      length = Math.random() * 5;
+    }
     for(var i = 0; i < length; i++) {
       let index = Math.floor(Math.random() * hex.length);
       this.text += direction ? hex[index] : bin[index];

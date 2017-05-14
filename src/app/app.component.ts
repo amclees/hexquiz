@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { Question } from './question';
 
-function getQuestions(number) {
+function getQuestions(number, length = null) {
   if (number > Question.hex_strings.length) {
     return [];
   }
   let questions = [];
   let used = [];
-  for(let i = 0; i < number; i++) {
-    questions[i] = new Question;
+  for (let i = 0; i < number; i++) {
+    questions[i] = length ? new Question(length) : new Question;
     if (used.includes(questions[i].text)) {
       i--;
     } else {
