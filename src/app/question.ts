@@ -41,6 +41,7 @@ export class Question {
   answer: string;
   displayAnswer: string;
   input: string;
+  length: number;
   static hex_strings: string[];
   static bin_strings: string[];
 
@@ -58,6 +59,7 @@ export class Question {
       this.answer += direction ? bin[index] : hex[index];
       this.displayAnswer += direction ? bin[index] + ' ' : hex[index];
     }
+    this.length = length;
     this.input = '';
   }
 

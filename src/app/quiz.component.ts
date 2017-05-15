@@ -48,8 +48,13 @@ export class QuizComponent {
       let right = this.questions.reduce(function(acc, question) {
         return acc + (question.correct() ? 1 : 0);
       }, 0);
+      let totalCharacters = this.questions.reduce(function(acc, question) {
+        return acc + question.length;
+      }, 0);
       let percentage = Math.floor(100 * right / this.questions.length);
-      this.scoring = `You scored a ${right}/${this.questions.length} - ${percentage}% in ${this.timer} seconds.`;
+      let rate = Math.round(100 * this.timer / totalCharacters) / 100;
+      this.scoring = `You scored a ${right}/${this.questions.length} - ${percentage}% in ${this.timer} seconds. It took you ${rate} seconds to convert each hex digit.`;
+      //this.conversionsPerSecond = ${}
       this.timer = 0;
     }
     this.verifying = this.verifying ? false : true;
