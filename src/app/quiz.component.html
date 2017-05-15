@@ -24,7 +24,7 @@
       <input class="form-control question" [(ngModel)]="question.input" [disabled]="verifying"/>
     </div>
     <div class="col-md-5 wrong" *ngIf="verifying && !question.correct()">
-      <p>{{question.answer}}</p>
+      <p>{{question.displayAnswer}}</p>
     </div>
   </div>
   <p *ngIf="verifying">{{scoring}}</p>

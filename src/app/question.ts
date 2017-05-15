@@ -39,6 +39,7 @@ const bin = [
 export class Question {
   text: string;
   answer: string;
+  displayAnswer: string;
   input: string;
   static hex_strings: string[];
   static bin_strings: string[];
@@ -47,13 +48,15 @@ export class Question {
     let direction = Math.random() < 0.5;
     this.text = '';
     this.answer = '';
+    this.displayAnswer = '';
     if(!length) {
       length = 2 + Math.random() * 5;
     }
     for(var i = 0; i < length; i++) {
       let index = Math.floor(Math.random() * hex.length);
       this.text += direction ? hex[index] : bin[index] + ' ';
-      this.answer += direction ? bin[index] + ' ' : hex[index];
+      this.answer += direction ? bin[index] : hex[index];
+      this.displayAnswer += direction ? bin[index] + ' ' : hex[index];
     }
     this.input = '';
   }
