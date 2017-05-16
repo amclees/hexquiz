@@ -1,4 +1,11 @@
 import { Component } from '@angular/core';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import { Question } from './question';
 
 function getQuestions(number, length = null) {
@@ -21,17 +28,36 @@ function getQuestions(number, length = null) {
 @Component({
   selector: 'hexquiz',
   templateUrl: './quiz.component.html',
-  styleUrls: ['./main.css']
+  styleUrls: ['./main.css'],
+  animations: [
+    trigger('questionIn', [
+      state('unfinished', style({
+        transform: 'translateX(0)'
+      })),
+      state('finished', style({
+        opacity: 0
+      })),
+      transition(':enter', [
+        style({transform: 'translateX(-100%)'}),
+        animate('400ms ease-in')
+      ]),
+      transition('* => finished', [
+        animate('400ms ease-out')
+      ])
+    ])
+  ]
 })
 
 export class QuizComponent {
-  questions = getQuestions(10);
+  questions: Question[];
   verifying = false;
-  button = 'Finish';
+  button = 'New Quiz';
   scoring: string;
   timer = 0;
 
   constructor() {
+    this.verifying = true;
+    this.continue();
     setInterval(() => {
       if(!this.verifying) {
         this.timer += 1
@@ -41,10 +67,18 @@ export class QuizComponent {
 
   continue () {
     if (this.verifying) {
-      this.questions = getQuestions(10);
-      this.button = 'Finish';
+      this.questions = [];
+      let questions = getQuestions(10);
+      var questionIntervalId = setInterval(() => {
+        this.questions.push(questions.pop());
+        if(questions.length === 0) {
+          clearInterval(questionIntervalId);
+        }
+      }, 100);
     } else {
-      this.button = 'New Quiz';
+      for (let question of this.questions) {
+        question.finished = false;
+      }
       let right = this.questions.reduce(function(acc, question) {
         return acc + (question.correct() ? 1 : 0);
       }, 0);
@@ -58,5 +92,16 @@ export class QuizComponent {
       this.timer = 0;
     }
     this.verifying = this.verifying ? false : true;
+  }
+
+  handleAnimationEnd (event, question) {
+    if (event.toState === 'finished') {
+      question.finished = true;
+      if (this.questions.reduce(function(acc, question) {
+        return acc && question.finished;
+      }, true)) {
+        this.continue();
+      }
+    }
   }
 }

@@ -42,6 +42,7 @@ export class Question {
   displayAnswer: string;
   input: string;
   length: number;
+  finished: false;
   static hex_strings: string[];
   static bin_strings: string[];
 
