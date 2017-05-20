@@ -14,7 +14,7 @@
       <h3>Correct Answer</h3>
     </div>
   </div>
-  <div *ngFor="let question of questions"
+  <span *ngFor="let question of questions"
   class="form-group row"
   [ngClass]="{'has-success': !(question.input.trim() === ''), 'has-error': verifying && !question.correct()}"
   [@questionIn]="question.input.trim() !== '' && question.blurred && !verifying ? 'finished' : 'unfinished'"
@@ -33,7 +33,7 @@
         <p>{{question.displayAnswer}}</p>
       </div>
     </span>
-  </div>
+  </span>
   <p *ngIf="verifying">{{scoring}}</p>
   <button class="btn btn-success" *ngIf="verifying" (click)="continue()">{{button}}</button>
 </div>
